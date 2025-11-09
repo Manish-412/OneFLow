@@ -1,0 +1,428 @@
+@import './theme.css';
+
+.products-page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.products-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 100px 40px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  padding: 24px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(189, 205, 207, 0.3);
+  box-shadow: 0 4px 16px rgba(3, 76, 54, 0.1);
+}
+
+.products-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #034C36, #FF812B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.btn-create-product {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #034C36, #003332);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(3, 76, 54, 0.3);
+}
+
+.btn-create-product:hover {
+  background: linear-gradient(135deg, #FF812B, #FF6B1B);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 129, 43, 0.4);
+}
+
+/* Products Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 2px solid rgba(189, 205, 207, 0.4);
+  padding: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(3, 76, 54, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(3, 76, 54, 0.2);
+  border-color: #034C36;
+}
+
+.product-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(189, 205, 207, 0.3);
+}
+
+.product-card-header h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #034C36;
+  margin: 0;
+  flex: 1;
+}
+
+.product-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn-small {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #BDCDCF;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #5A7D7F;
+}
+
+.action-btn-small:hover {
+  background: linear-gradient(135deg, #034C36, #003332);
+  color: white;
+  border-color: #034C36;
+  transform: scale(1.05);
+}
+
+.action-btn-small.delete:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  border-color: #dc2626;
+}
+
+/* Product Card Body */
+.product-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-category-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(242, 224, 223, 0.3);
+  border: 1px solid rgba(189, 205, 207, 0.4);
+  border-radius: 8px;
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.category-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #034C36;
+}
+
+.category-checkbox input[type="checkbox"]:checked + span {
+  color: #034C36;
+  font-weight: 600;
+}
+
+.category-checkbox span {
+  font-size: 14px;
+  color: #5A7D7F;
+  font-weight: 500;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(242, 224, 223, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(189, 205, 207, 0.3);
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detail-label {
+  font-size: 14px;
+  color: #5A7D7F;
+  font-weight: 500;
+}
+
+.detail-value {
+  font-size: 16px;
+  color: #034C36;
+  font-weight: 700;
+}
+
+/* Modal Styles */
+.product-modal-content {
+  padding: 24px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #034C36;
+}
+
+.form-input {
+  padding: 12px 16px;
+  border: 1px solid #BDCDCF;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #034C36;
+  box-shadow: 0 0 0 3px rgba(3, 76, 54, 0.1);
+}
+
+.category-checkboxes {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.category-checkbox-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(242, 224, 223, 0.3);
+  border: 2px solid rgba(189, 205, 207, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-checkbox-option:hover {
+  border-color: #034C36;
+  background: rgba(242, 224, 223, 0.5);
+}
+
+.category-checkbox-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #034C36;
+}
+
+.category-checkbox-option input[type="checkbox"]:checked {
+  background: #034C36;
+}
+
+.category-checkbox-option span {
+  font-size: 14px;
+  color: #5A7D7F;
+  font-weight: 500;
+}
+
+.category-checkbox-option input[type="checkbox"]:checked + span {
+  color: #034C36;
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(189, 205, 207, 0.3);
+}
+
+.btn-modal-cancel {
+  padding: 10px 24px;
+  background: transparent;
+  color: #5A7D7F;
+  border: 1px solid #BDCDCF;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-cancel:hover {
+  background: rgba(242, 224, 223, 0.5);
+  color: #034C36;
+  border-color: #034C36;
+}
+
+.btn-modal-confirm {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #034C36, #003332);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(3, 76, 54, 0.3);
+}
+
+.btn-modal-confirm:hover {
+  background: linear-gradient(135deg, #FF812B, #FF6B1B);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 129, 43, 0.4);
+}
+
+/* Delete Confirmation */
+.delete-confirm-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.delete-confirm-content p {
+  font-size: 16px;
+  color: #5A7D7F;
+  margin-bottom: 12px;
+}
+
+.warning-text {
+  font-size: 14px;
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.delete-confirm-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.btn-cancel-delete {
+  padding: 10px 24px;
+  background: transparent;
+  color: #5A7D7F;
+  border: 1px solid #BDCDCF;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel-delete:hover {
+  background: rgba(242, 224, 223, 0.5);
+  color: #034C36;
+  border-color: #034C36;
+}
+
+.btn-delete {
+  padding: 10px 24px;
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #b91c1c, #991b1b);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .products-container {
+    padding: 80px 20px 20px;
+  }
+
+  .products-header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .products-header h1 {
+    font-size: 24px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .category-checkboxes {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans;
+    background: transparent !important;
+  }
+}
+
+@layer components {
+  .auth-container {
+    @apply flex justify-center items-center min-h-screen bg-gray-100 p-5;
+  }
+
+  .auth-box {
+    @apply bg-white p-10 rounded-lg shadow-md w-full max-w-md;
+  }
+
+  .auth-box h2 {
+    @apply m-0 mb-8 text-center text-gray-800 text-2xl font-semibold;
+  }
+
+  .form-group {
+    @apply mb-5;
+  }
+
+  .form-group label {
+    @apply block mb-2 text-gray-600 text-sm;
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    @apply w-full p-3 border border-gray-300 rounded-md text-sm transition duration-300;
+  }
+
+  .form-group input:focus {
+    @apply border-primary-500 outline-none ring-1 ring-primary-500;
+  }
+
+  .checkbox-group {
+    @apply flex items-center gap-2.5;
+  }
+
+  .checkbox-group input[type="checkbox"] {
+    @apply w-4 h-4;
+  }
+
+  .checkbox-group label {
+    @apply m-0 text-xs text-gray-600;
+  }
+
+  .auth-button {
+    @apply w-full py-3 bg-primary-500 text-white border-none rounded-md text-base cursor-pointer transition-colors duration-300;
+  }
+
+  .auth-button:hover {
+    @apply bg-primary-600;
+  }
+
+  .forgot-password {
+    @apply block text-right text-primary-500 no-underline text-sm mb-5;
+  }
+
+  .switch-auth {
+    @apply text-center mt-5;
+  }
+
+  .switch-auth p {
+    @apply text-gray-600 text-sm m-0;
+  }
+
+  .switch-auth .link-button,
+  .forgot-password {
+    @apply bg-transparent border-none text-primary-500 font-medium cursor-pointer p-0 text-inherit;
+  }
+}

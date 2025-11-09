@@ -1,0 +1,142 @@
+.about-footer {
+  width: 100%;
+  background: linear-gradient(135deg, #034C36 0%, #001110 100%);
+  color: white;
+  margin-top: auto;
+  border-top: 2px solid rgba(255, 129, 43, 0.3);
+}
+
+.about-footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.about-footer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.about-footer-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #FF812B;
+}
+
+.about-footer-text {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about-footer-list li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+.about-footer-list li:hover {
+  color: #FF812B;
+}
+
+.about-footer-stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 129, 43, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 129, 43, 0.3);
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 80px;
+}
+
+.footer-stat:hover {
+  background: rgba(255, 129, 43, 0.2);
+  transform: translateY(-2px);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FF812B;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+}
+
+.about-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #FF812B;
+}
+
+.about-footer-bottom {
+  background: rgba(0, 17, 16, 0.8);
+  padding: 1rem 2rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 129, 43, 0.2);
+}
+
+.about-footer-bottom p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-footer-container {
+    grid-template-columns: 1fr;
+    padding: 2rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .about-footer-title {
+    font-size: 1.1rem;
+  }
+
+  .about-footer-stats {
+    justify-content: center;
+  }
+}
+
+

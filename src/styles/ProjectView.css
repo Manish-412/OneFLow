@@ -1,0 +1,705 @@
+@import './theme.css';
+@import './Dashboard.css';
+
+/* Project View Container */
+.project-view-container {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #F2E0DF 0%, #BDCDCF 25%, #E3B8B8 50%, #034C36 75%, #003332 100%) !important;
+  background-size: 400% 400% !important;
+  animation: gradientFlow 25s ease infinite !important;
+  overflow-x: hidden;
+}
+
+@keyframes gradientFlow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Main Content */
+.project-main-content {
+  flex: 1;
+  padding: 30px 40px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+/* Project Header */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 25px 30px;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+  border: 2px solid rgba(255, 129, 43, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(255, 129, 43, 0.3) !important;
+}
+
+.project-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(3, 76, 54, 0.3);
+  border-radius: 8px;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 129, 43, 0.5);
+  color: #FF812B;
+  transform: translateX(-2px);
+  box-shadow: 0 0 0 3px rgba(255, 129, 43, 0.2);
+}
+
+.project-header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin: 0 0 6px 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+.project-subtitle {
+  font-size: 14px;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.project-header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.project-header-actions .btn-primary,
+.project-header-actions .btn-secondary {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.project-header-actions .btn-primary {
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 129, 43, 0.3) !important;
+  box-shadow: 0 4px 20px rgba(255, 129, 43, 0.4) !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.project-header-actions .btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 25px rgba(255, 129, 43, 0.6) !important;
+}
+
+.project-header-actions .btn-secondary {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #001110 !important;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5) !important;
+  border: 2px solid rgba(3, 76, 54, 0.3) !important;
+}
+
+.project-header-actions .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.35) !important;
+  border-color: rgba(255, 129, 43, 0.5) !important;
+  color: #FF812B !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 0 0 3px rgba(255, 129, 43, 0.2) !important;
+}
+
+/* Tabs */
+.project-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+  border: 2px solid rgba(255, 129, 43, 0.2) !important;
+  box-shadow: 0 8px 32px rgba(255, 129, 43, 0.3) !important;
+  width: fit-content;
+}
+
+.tab-btn {
+  padding: 12px 28px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  opacity: 0.7;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+  opacity: 1;
+  color: #FF812B;
+  background: rgba(255, 129, 43, 0.1);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%) !important;
+  color: #ffffff !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
+  box-shadow: 0 4px 20px rgba(255, 129, 43, 0.4) !important;
+}
+
+/* Tasks View */
+.tasks-view {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Kanban Search */
+.kanban-search {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0.5;
+}
+
+.kanban-search-input {
+  width: 100%;
+  padding: 14px 20px 14px 50px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(3, 76, 54, 0.3);
+  border-radius: 12px;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.kanban-search-input::placeholder {
+  color: #001110;
+  opacity: 0.6;
+}
+
+.kanban-search-input:focus {
+  outline: none;
+  border-color: rgba(255, 129, 43, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 129, 43, 0.2);
+}
+
+/* Kanban Board */
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  min-height: 600px;
+}
+
+.kanban-column {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(189, 205, 207, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0, 51, 50, 0.08) !important;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.kanban-column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px solid rgba(255, 129, 43, 0.2);
+}
+
+.kanban-column-header h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #003332 !important;
+  text-shadow: none !important;
+  margin: 0;
+}
+
+.kanban-column-header.in-progress {
+  border-bottom-color: rgba(59, 130, 246, 0.5);
+}
+
+.kanban-column-header.blocked {
+  border-bottom-color: rgba(239, 68, 68, 0.5);
+}
+
+.kanban-column-header.done {
+  border-bottom-color: rgba(34, 197, 94, 0.5);
+}
+
+.task-count {
+  background: rgba(3, 76, 54, 0.15);
+  color: #034C36 !important;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.kanban-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+/* Task Card */
+.task-card {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(189, 205, 207, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  box-shadow: 0 2px 8px rgba(0, 51, 50, 0.08) !important;
+}
+
+.task-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%);
+  border-radius: 12px 12px 0 0;
+  transition: height 0.3s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(3, 76, 54, 0.15) !important;
+  border-color: rgba(255, 129, 43, 0.4) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+}
+
+.task-card:hover::before {
+  height: 3px;
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.task-card-header h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #003332 !important;
+  text-shadow: none !important;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.priority-badge {
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.task-card-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.task-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.task-username {
+  font-size: 13px;
+  color: #003332 !important;
+  font-weight: 500;
+}
+
+.task-card-meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(189, 205, 207, 0.3);
+}
+
+.task-due-date,
+.task-hours {
+  font-size: 12px;
+  color: #003332 !important;
+  opacity: 0.7;
+}
+
+.task-card-footer {
+  display: flex;
+  gap: 15px;
+  padding-top: 10px;
+}
+
+.task-stat {
+  font-size: 12px;
+  color: #003332 !important;
+  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Financial View */
+.financial-view {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.financial-header {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 25px 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.financial-header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+
+.financial-header p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.financial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+/* Financial Section */
+.financial-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.financial-section:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.financial-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-icon {
+  font-size: 22px;
+}
+
+.section-title h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  margin: 0;
+}
+
+.financial-section .add-doc-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #034C36 0%, #FF812B 100%) !important;
+  border: 1px solid rgba(255, 129, 43, 0.3) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(255, 129, 43, 0.4) !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.add-doc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 129, 43, 0.6);
+}
+
+/* Financial List */
+.financial-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.financial-item {
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  padding: 15px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(189, 205, 207, 0.3) !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 8px rgba(0, 51, 50, 0.08) !important;
+}
+
+.financial-item:hover {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(255, 129, 43, 0.4) !important;
+  transform: translateX(5px) !important;
+  box-shadow: 0 4px 16px rgba(3, 76, 54, 0.15) !important;
+}
+
+.financial-item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.doc-number {
+  font-size: 14px;
+  font-weight: 600;
+  color: #003332 !important;
+}
+
+.doc-date {
+  font-size: 12px;
+  color: #003332 !important;
+  opacity: 0.6;
+}
+
+.financial-item-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doc-amount {
+  font-size: 16px;
+  font-weight: 700;
+  color: #034C36 !important;
+}
+
+.doc-status {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.doc-status.approved {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+}
+
+.doc-status.pending {
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+}
+
+.doc-status.paid {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.empty-financial {
+  padding: 30px;
+  text-align: center;
+  color: #003332 !important;
+  opacity: 0.4;
+  font-size: 14px;
+  font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .kanban-board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .financial-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-main-content {
+    padding: 20px 25px;
+  }
+
+  .project-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .project-header-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    flex: 1;
+  }
+
+  .kanban-board {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-view-container {
+    padding: 0;
+  }
+
+  .project-main-content {
+    padding: 15px;
+  }
+
+  .project-header h1 {
+    font-size: 24px;
+  }
+
+  .project-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tab-btn {
+    flex: 1;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Settings Dropdown */
+.settings-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.settings-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 220px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 129, 43, 0.2);
+  border-radius: 12px;
+  padding: 8px;
+  margin-top: 8px;
+  box-shadow: 0 8px 32px rgba(255, 129, 43, 0.3);
+  z-index: 1000;
+}
+
+.settings-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #001110;
+  text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.settings-menu button:hover {
+  background: rgba(255, 129, 43, 0.15);
+  color: #FF812B;
+  transform: translateX(2px);
+}
