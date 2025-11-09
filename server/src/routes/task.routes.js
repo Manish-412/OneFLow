@@ -21,12 +21,6 @@ router.put('/:id', authenticateToken, taskController.updateTask);
 // Mark task as complete
 router.patch('/:id/complete', authenticateToken, taskController.markTaskComplete);
 
-// Add members to task
-router.post('/:id/members', authenticateToken, taskController.addTaskMembers);
-
-// Get task members
-router.get('/:id/members', authenticateToken, taskController.getTaskMembers);
-
 // Delete task
 router.delete('/:id', authenticateToken, taskController.deleteTask);
 

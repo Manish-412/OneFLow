@@ -7,7 +7,6 @@ const projectRoutes = require('./routes/project.routes');
 const dashboardRoutes = require('./routes/dashboard.routes');
 const timesheetRoutes = require('./routes/timesheet.routes');
 const taskRoutes = require('./routes/task.routes');
-const userRoutes = require('./routes/user');
 const { errorHandler } = require('./middleware/error');
 
 const app = express();
@@ -41,7 +40,6 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/timesheets', timesheetRoutes);
 app.use('/api/tasks', taskRoutes);
-app.use('/api', userRoutes);
 
 // Error handling
 app.use(errorHandler);

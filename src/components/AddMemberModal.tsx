@@ -48,64 +48,26 @@ const AddMemberModal: React.FC<AddMemberModalProps> = ({
         }
       });
 
-      console.log('Fetch users response status:', response.status);
-      
       if (response.ok) {
         const data = await response.json();
-        console.log('Users data received:', data);
-        
-        // Handle different response formats
-        const users = data.users || data || [];
-        
         // Filter out members already assigned
         const currentMemberIds = currentMembers.map(m => m.id);
-        const available = users.filter((user: any) => 
+        const available = data.users.filter((user: any) => 
           !currentMemberIds.includes(user.id)
         ).map((user: any) => ({
           id: user.id,
-          name: user.full_name || user.username || user.name,
+          name: user.full_name || user.username,
           email: user.email,
-          role: user.role || user.user_role || 'Team Member',
-          avatar: getInitials(user.full_name || user.username || user.name || 'U')
+          role: user.role || 'Team Member',
+          avatar: getInitials(user.full_name || user.username)
         }));
-        
-        console.log('Available members:', available);
         setAvailableMembers(available);
-      } else {
-        console.error('Failed to fetch users:', response.status, response.statusText);
-        // Use mock data if API fails
-        loadMockData();
       }
     } catch (error) {
       console.error('Error fetching team members:', error);
-      // Use mock data if network error
-      loadMockData();
     } finally {
       setIsLoading(false);
     }
-  };
-
-  // Fallback mock data for testing
-  const loadMockData = () => {
-    console.log('Using mock data for team members');
-    const mockMembers = [
-      { id: 1, name: 'John Doe', email: 'john.doe@company.com', role: 'Developer', avatar: 'JD' },
-      { id: 2, name: 'Jane Smith', email: 'jane.smith@company.com', role: 'Designer', avatar: 'JS' },
-      { id: 3, name: 'Bob Wilson', email: 'bob.wilson@company.com', role: 'QA Engineer', avatar: 'BW' },
-      { id: 4, name: 'Alice Johnson', email: 'alice.johnson@company.com', role: 'Developer', avatar: 'AJ' },
-      { id: 5, name: 'Charlie Brown', email: 'charlie.brown@company.com', role: 'Product Manager', avatar: 'CB' },
-      { id: 6, name: 'Diana Prince', email: 'diana.prince@company.com', role: 'UX Designer', avatar: 'DP' },
-      { id: 7, name: 'Ethan Hunt', email: 'ethan.hunt@company.com', role: 'DevOps', avatar: 'EH' },
-      { id: 8, name: 'Fiona Green', email: 'fiona.green@company.com', role: 'Data Analyst', avatar: 'FG' },
-      { id: 9, name: 'George Martin', email: 'george.martin@company.com', role: 'Backend Developer', avatar: 'GM' },
-      { id: 10, name: 'Hannah Lee', email: 'hannah.lee@company.com', role: 'Frontend Developer', avatar: 'HL' },
-    ];
-    
-    // Filter out already assigned members
-    const currentMemberIds = currentMembers.map(m => m.id);
-    const available = mockMembers.filter(member => !currentMemberIds.includes(member.id));
-    console.log('Mock members loaded:', available.length);
-    setAvailableMembers(available);
   };
 
   const getInitials = (name: string) => {
