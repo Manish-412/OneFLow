@@ -43,3 +43,30 @@ exports.updateApprovalStatus = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getUsers = async (req, res, next) => {
+  try {
+    const { role } = req.query;
+    
+    let query = 'SELECT id, name, first_name, last_name, email, role FROM users WHERE approval_status = $1';
+    let params = ['approved'];
+    
+    // Filter by role if provided (supports comma-separated values like "admin,project_manager")
+    if (role) {
+      const roles = role.split(',').map(r => r.trim());
+      query += ' AND role = ANY($2)';
+      params.push(roles);
+    }
+    
+    query += ' ORDER BY name, email';
+    
+    const result = await db.query(query, params);
+    
+    res.json({
+      users: result.rows
+    });
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    next(error);
+  }
+};

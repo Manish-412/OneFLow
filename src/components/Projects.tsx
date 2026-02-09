@@ -37,7 +37,7 @@ interface Project {
   isAssigned: boolean;
   budget: number;
   spent: number;
-  tasks: {
+  tasks?: {
     total: number;
     completed: number;
   };
@@ -71,6 +71,7 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
   const [projectsList, setProjectsList] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showCreateProjectModal, setShowCreateProjectModal] = useState(false);
+  const [projectManagers, setProjectManagers] = useState<Array<{ id: number; name: string; email: string }>>([]);
   const [newProject, setNewProject] = useState({
     name: '',
     tags: [] as string[],
@@ -105,14 +106,14 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
         const data = await response.json();
         
         // Transform backend data to match Projects component format
-        const transformedProjects: Project[] = data.projects.map((p: any) => ({
+        const transformedProjects: Project[] = (data.projects || []).map((p: any) => ({
           id: p.id,
-          name: p.name,
+          name: p.name || 'Untitled Project',
           status: p.status === 'planned' ? 'Upcoming' : 
                   p.status === 'in_progress' ? 'Ongoing' :
                   p.status === 'completed' ? 'Completed' : 
                   p.status === 'on_hold' ? 'On Hold' : 'Pending',
-          deadline: p.deadline,
+          deadline: p.deadline || new Date().toISOString().split('T')[0],
           progress: p.progress || 0,
           assignedTo: p.assigned_user || '',
           isAssigned: !!p.assigned_user,
@@ -122,7 +123,7 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
             total: p.total_tasks || 0,
             completed: p.completed_tasks || 0
           },
-          priority: p.priority || 'Medium',
+          priority: (p.priority || 'Medium') as 'High' | 'Medium' | 'Low',
           description: p.description || '',
           trackingStatus: p.trackingStatus || p.tracking_status || undefined,
           managerImage: undefined
@@ -138,6 +139,36 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
     };
 
     fetchProjects();
+  }, []);
+
+  // Fetch project managers from database
+  React.useEffect(() => {
+    const fetchProjectManagers = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/admin/users?role=project_manager,admin', {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch project managers');
+        }
+
+        const data = await response.json();
+        const managers = data.users || data || [];
+        setProjectManagers(managers.map((user: any) => ({
+          id: user.id,
+          name: user.name || `${user.first_name || ''} ${user.last_name || ''}`.trim() || user.email,
+          email: user.email
+        })));
+      } catch (error) {
+        console.error('Error fetching project managers:', error);
+        setProjectManagers([]);
+      }
+    };
+
+    fetchProjectManagers();
   }, []);
 
   // Handle creating new project
@@ -853,7 +884,7 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
                   <div className="stat-item-content">
                     <span className="stat-item-label">Tasks</span>
                     <span className="stat-item-value">
-                      {project.tasks.completed}/{project.tasks.total}
+                      {project.tasks?.completed || 0}/{project.tasks?.total || 0}
                     </span>
                   </div>
                 </div>
@@ -1169,10 +1200,11 @@ const Projects: React.FC<ProjectsProps> = ({ userName, onBack, onProjectClick, o
                   className="form-select"
                 >
                   <option value="">Select a project manager</option>
-                  <option value="John Doe">John Doe</option>
-                  <option value="Jane Smith">Jane Smith</option>
-                  <option value="Mike Johnson">Mike Johnson</option>
-                  <option value="Sarah Williams">Sarah Williams</option>
+                  {projectManagers.map((manager) => (
+                    <option key={manager.id} value={manager.name}>
+                      {manager.name} ({manager.email})
+                    </option>
+                  ))}
                 </select>
               </div>
 
